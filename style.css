@@ -1,0 +1,259 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body {
+  background-color: lightgray;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+}
+
+.controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #343436;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.controls .face-space {
+  width: 60px;
+}
+
+#auth {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 0 20px;
+  height: 100%;
+  min-height: 60px;
+  background-color: #66666E;
+}
+#auth:hover {
+  background-color: #000;
+}
+#auth svg {
+  height: 100%;
+}
+#auth span {
+  margin-left: 10px;
+}
+
+#colors {
+  margin: 0;
+  padding: 10px;
+  flex: 1;
+  text-align: center;
+  transition: transform 0.5s ease-in-out;
+  position: relative;
+}
+#colors:before {
+  color: white;
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  content: "You're free to look around, but to help prevent spam you need to login before you can draw, sorry about that.";
+}
+#colors li {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+}
+#colors li.active {
+  outline: 3px solid white;
+}
+#colors li:not(:last-child) {
+  margin-right: 5px;
+}
+#colors li#c-ffffff {
+  background-color: #ffffff;
+  outline-color: #bbb;
+}
+#colors li#c-e4e4e4 {
+  background-color: #e4e4e4;
+}
+#colors li#c-888888 {
+  background-color: #888888;
+}
+#colors li#c-222222 {
+  background-color: #222222;
+}
+#colors li#c-ffa7d1 {
+  background-color: #ffa7d1;
+}
+#colors li#c-e50000 {
+  background-color: #e50000;
+}
+#colors li#c-e59500 {
+  background-color: #e59500;
+}
+#colors li#c-a06a42 {
+  background-color: #a06a42;
+}
+#colors li#c-e5d900 {
+  background-color: #e5d900;
+}
+#colors li#c-94e044 {
+  background-color: #94e044;
+}
+#colors li#c-02be01 {
+  background-color: #02be01;
+}
+#colors li#c-00d3dd {
+  background-color: #00d3dd;
+}
+#colors li#c-0083c7 {
+  background-color: #0083c7;
+}
+#colors li#c-0000ea {
+  background-color: #0000ea;
+}
+#colors li#c-cf6ee4 {
+  background-color: #cf6ee4;
+}
+#colors li#c-820080 {
+  background-color: #820080;
+}
+
+.cooldown {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #343436;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  display: none;
+}
+
+.info {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+}
+.info span {
+  color: #ff5555;
+}
+.info.drawing {
+  display: none;
+}
+.info.loading {
+  display: none;
+}
+.info.general {
+  display: block;
+}
+
+.loading .info.drawing {
+  display: none !important;
+}
+.loading .info.loading {
+  display: block !important;
+}
+.loading .info.general {
+  display: none !important;
+}
+
+.zoom-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.zoom-controls > div {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+}
+.zoom-controls > div:hover {
+  cursor: pointer;
+  background-color: black;
+}
+.zoom-controls > div:not(:first-child) {
+  margin-top: 5px;
+}
+
+.selectedColor.zoomed .info.drawing {
+  display: block;
+}
+.selectedColor.zoomed .info.general {
+  display: none;
+}
+
+.dragging #canvas {
+  cursor: move;
+}
+
+.logged-out #auth {
+  -webkit-animation: 1s linear pulse infinite;
+          animation: 1s linear pulse infinite;
+}
+.logged-out #colors {
+  transform: translateY(100%);
+}
+
+.cooling .cooldown {
+  display: flex;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    background: #66666E;
+  }
+  50% {
+    background: #DB5461;
+  }
+  100% {
+    background: #66666E;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background: #66666E;
+  }
+  50% {
+    background: #DB5461;
+  }
+  100% {
+    background: #66666E;
+  }
+}
